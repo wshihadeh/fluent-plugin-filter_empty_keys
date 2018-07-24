@@ -25,7 +25,7 @@ class TypecastFilterTest < Test::Unit::TestCase
   test 'test_empty_keys' do
     d = create_driver
     msg = {
-      'integer' => '1',
+      'integer' => 1,
       'nil'  => nil,
       'time'    => '2013-02-12 22:01:15 UTC',
       'bool'    => 'true',
