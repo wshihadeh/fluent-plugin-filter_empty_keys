@@ -23,14 +23,18 @@ class TypecastFilterTest < Test::Unit::TestCase
   end
 
   test 'test_empty_keys' do
-    d = create_driver
+    d = create_driver(%[
+        empty_keys Undefined:Undefined,Remove:1
+      ])
     msg = {
-      'integer' => 1,
-      'nil'  => nil,
-      'time'    => '2013-02-12 22:01:15 UTC',
-      'bool'    => 'true',
-      'array'   => 'a,b,c',
-      'empty'   => '',
+      'integer'   => 1,
+      'nil'       => nil,
+      'time'      => '2013-02-12 22:01:15 UTC',
+      'bool'      => 'true',
+      'array'     => 'a,b,c',
+      'empty'     => '',
+      'Undefined' => 'Undefined',
+      'Remove'    => 1,
     }
     filtered = filter(d, [msg]).first[2]
     assert_equal 4, filtered.count
@@ -40,6 +44,7 @@ class TypecastFilterTest < Test::Unit::TestCase
     assert_equal true,  filtered.key?("bool")
     assert_equal true,  filtered.key?("array")
     assert_equal false, filtered.key?("empty")
-
+    assert_equal false, filtered.key?("Undefined")
+    assert_equal false, filtered.key?("Remove")
   end
 end
