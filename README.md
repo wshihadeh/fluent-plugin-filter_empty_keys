@@ -1,4 +1,4 @@
-# fluent-plugin-filter_typecast
+# fluent-plugin-filter_empty_keys
 
 A Fluentd filter plugin to filter empty keys
 
