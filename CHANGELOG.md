@@ -1,7 +1,14 @@
+# 0.0.4
+Enhancements:
+
+* Support custom empty values.
+* updated examples with `@type` instead deprecated `type`
+
+
 # 0.0.3
 Enhancements:
 
-* Support custome keys empty values.
+* Support custom keys empty values.
 
 # 0.0.1
 

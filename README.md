@@ -18,45 +18,68 @@ gem install fluent-plugin-filter_empty_keys
 
 ```
 <source>
-  type dummy
+  @type dummy
   tag dummy
-  dummy {"field1":"","field2":"2","field3":"2013-02-12 22:04:14 UTC","field4":"","field5":"a,b,c"}
+  dummy {"field1":"", "field2":"2", "field3":"2013-02-12 22:04:14 UTC", "field4":"", "field5":"a,b,c"}
 </source>
 
 <filter **>
-  type empty_keys
+  @type empty_keys
 </filter>
 
 <match **>
-  type stdout
+  @type stdout
 </match>
 ```
 
 You should see casted records:
 ```
-dummy {"field2":"2","field3":"2013-02-12 22:04:14 UTC","field5":"a,b,c"}
+dummy {"field2":"2", "field3":"2013-02-12 22:04:14 UTC", "field5":"a,b,c"}
 ```
 
 ```
 <source>
-  type dummy
+  @type dummy
   tag dummy
-  dummy {"field0":0,"field1":"","field2":"Undefined","field3":"2013-02-12 22:04:14 UTC","field4":"","field5":"a,b,c"}
+  dummy {"field0":0, "field1":"", "field2":"Undefined", "field3":"2013-02-12 22:04:14 UTC", "field4":"", "field5":"a,b,c"}
 </source>
 
 <filter **>
-  type empty_keys
+  @type empty_keys
   empty_keys field0:0,field2:Undefined
 </filter>
 
 <match **>
-  type stdout
+  @type stdout
 </match>
 ```
 
 You should see casted records:
 ```
-dummy {"field3":"2013-02-12 22:04:14 UTC","field5":"a,b,c"}
+dummy {"field3":"2013-02-12 22:04:14 UTC", "field5":"a,b,c"}
+```
+
+```
+<source>
+  @type dummy
+  tag dummy
+  dummy {"field0":0, "field1":"", "field2":"Undefined", "field3":"2013-02-12 22:04:14 UTC", "field4":"", "field5":"-"}
+</source>
+
+<filter **>
+  @type empty_keys
+  empty_values -,0
+  empty_values_delimiter ,
+</filter>
+
+<match **>
+  @type stdout
+</match>
+```
+
+You should see casted records:
+```
+dummy {"field2":"Undefined","field3":"2013-02-12 22:04:14 UTC"}
 ```
 
 ## ChangeLog
