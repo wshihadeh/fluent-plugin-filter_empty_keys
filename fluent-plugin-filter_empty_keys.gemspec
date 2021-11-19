@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "fluent-plugin-filter_empty_keys"
-  s.version     = "0.0.3"
+  s.version     = "0.0.4"
   s.authors     = ["Al-waleed Shihadeh"]
   s.email       = ["wshihadh@gmail.com"]
   s.homepage    = "https://github.com/wshihadeh/fluent-plugin-filter_empty_keys.git"
